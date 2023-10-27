@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 100px); /* 3 columnas de 100px de ancho cada una */
+            grid-template-rows: repeat(3, 100px); /* 3 filas de 100px de alto cada una */
+            gap: 5px; /* Espacio entre celdas */
+            width: 300px; /* Ancho total de la cuadrícula */
+            height: 300px; /* Alto total de la cuadrícula */
+        }
+
+        .grid-item {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #000;
+            font-size: 24px;
+            background-color: blue; /* Color de fondo azul */
+            color: white; /* Color de texto blanco */
+        }
+
+        .nada {
+            background-color: transparent; /* Color de fondo transparente para "Nada" */
+            border: none; /* Sin borde */
+        }
+
+        .nada::before {
+            content: ""; /* Contenido vacío */
+        }
+
+        .grid-container {
+            grid-template-areas:
+                "nada div nada"
+                "div nada div"
+                "nada div nada";
+        }
+    </style>
+</head>
+<body>
+    <div class="grid-container">
+        <div class="grid-item">Div</div>
+        <div class="grid-item nada">Nada</div>
+        <div class="grid-item">Div</div>
+        <div class="grid-item nada">Nada</div>
+    </div>
+</body>
+</html>

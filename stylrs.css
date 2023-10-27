@@ -1,0 +1,123 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.material-symbols-outlined {
+    color: #4C0633;
+    font-size: 40px;
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 48
+}
+
+body{
+    background-color: #DDDDE1;
+
+    font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto Mono', monospace;
+}
+
+.game-container{
+    margin-top: 60px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+
+}
+
+#game{
+    border-radius: 5px;
+    border: solid 3px #938DA6;
+    background-color: #A3B434; 
+    width: 80%;
+    
+}
+
+.contrls{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 24px;
+}
+
+.messages{
+    margin: 24px auto;
+    display: flex;
+    justify-content: space-around;
+    max-width: 379px;
+    text-align: center;
+}
+
+.messages div{
+    padding: 8px;
+}
+
+.messages .Title{
+    color: #4B297F;
+    font-weight: bold;
+}
+
+.contenedor-btns{
+    margin: 0 auto;
+    padding: 10px;
+    border-radius: 100%;
+    background-color: #DDDDE1;
+    width: calc(60px * 3);
+    box-shadow: 8px 8px 16px 0px rgba(0, 0, 0, 0.10) inset, -8px -8px 16px 0px rgba(255, 255, 255, 0.25) inset;
+}
+
+.contenedor-btns .btns{
+    display: grid;
+    grid-template-columns: repeat(3,60px);
+    grid-template-rows: repeat(3,60px);
+}
+
+.up{
+    grid-row: 1;
+    grid-column: 2;
+}
+
+.left{
+    grid-row: 2;
+    grid-column: 1;
+}
+
+.rigth{
+    grid-row: 2;
+    grid-column: 3;
+}
+
+.down{
+    grid-row: 3;
+    grid-column: 2;
+}
+
+
+.contenedor-btns .btns button{
+    height: 60px;
+    width: 60px;
+    border-radius: 60px;
+    background-color: #8F1C69;
+    cursor: pointer;
+
+    display: grid;
+    place-items: center;
+
+    box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25) inset, -4px -4px 4px 0px rgba(255, 255, 255, 0.20) inset, 0px 4px 4px 0px rgba(0, 0, 0, 0.10);
+
+}
+
+.contenedor-btns .btns button:hover{
+    background-color: #731c55;
+}
+
+.contenedor-btns .btns button:active{
+    background-color: #731c55;
+    box-shadow: none;
+}
+
+
