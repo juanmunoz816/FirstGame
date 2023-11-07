@@ -18,6 +18,13 @@ window.addEventListener('keyup', btnUP)
 
 let canvasSize;
 let elementsSize;
+let x;
+let y;
+
+const playerPosition = {
+    x: undefined,
+    y: undefined,
+}
 
 window.addEventListener('load' , setCanvasSize);
 window.addEventListener('resize' ,setCanvasSize);
@@ -52,17 +59,29 @@ function startGame(){
     console.log(mapRow);
     const mapRowCol = mapRow.map (row => row.trim().split(''));
 
-    let x = elementsSize;
-    let y = elementsSize * 0.98;
+    game.clearRect(0,0,canvasSize,canvasSize);
+
+    x = elementsSize;
+    y = elementsSize * 0.98;
 
    mapRowCol.forEach((row, rowI) =>{
     row.forEach((col, colI) => {
         const emoji = emojis[col];
         const posX = x * (colI + 1)
         const posY = y * (rowI + 1);
+
+        if (col == "O"){
+            if (!playerPosition.x && !playerPosition.y){
+                playerPosition.x = posX;
+                playerPosition.y = posY;
+            }
+        }
+
         game.fillText(emoji, posX, posY)
     })
    })
+
+   movePlayer();
   
 /*     
 Esta fue la primera forma cómo se calculo el mapa
@@ -75,20 +94,33 @@ for (let i = 1; i <= 10; i++){
 
 } 
 
+function movePlayer(){
+    game.fillText(emojis['PLAYER'], playerPosition.x, playerPosition.y)
+
+}
+
 function moveUp(){
     console.log('Up');
+    playerPosition.y -= y
+    startGame();
 }
 
 function moveLeft(){
     console.log('Left');
+    playerPosition.x -= x
+    startGame();
 }
 
 function moveDown(){
     console.log('Down');
+    playerPosition.y += y
+    startGame();
 }
 
 function moveRight(){
     console.log('Rigth');
+    playerPosition.x += x
+    startGame();
 }
 
 function moveKeyBoard(key){
@@ -121,5 +153,4 @@ function btnUP(){
     left.classList.remove('press')
     down.classList.remove('press')
     right.classList.remove('press')
-
 }
