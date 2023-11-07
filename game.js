@@ -1,11 +1,26 @@
 const canvas = document.querySelector('#game');
 const game = canvas.getContext('2d');
 
+/* botones */
+
+const up = document.querySelector('#up');
+const left = document.querySelector('#left');
+const down = document.querySelector('#down');
+const right = document.querySelector('#right');
+
+up.addEventListener('click', moveUp);
+left.addEventListener('click', moveLeft);
+down.addEventListener('click', moveDown);
+right.addEventListener('click', moveRight);
+
+window.addEventListener('keydown', moveKeyBoard);
+window.addEventListener('keyup', btnUP)
+
 let canvasSize;
 let elementsSize;
 
 window.addEventListener('load' , setCanvasSize);
-window.addEventListener('resize' ,setCanvasSize)
+window.addEventListener('resize' ,setCanvasSize);
 
 
 function setCanvasSize(){
@@ -59,3 +74,52 @@ for (let i = 1; i <= 10; i++){
     }*/
 
 } 
+
+function moveUp(){
+    console.log('Up');
+}
+
+function moveLeft(){
+    console.log('Left');
+}
+
+function moveDown(){
+    console.log('Down');
+}
+
+function moveRight(){
+    console.log('Rigth');
+}
+
+function moveKeyBoard(key){
+    
+    switch (key.key){
+        case 'ArrowUp':
+            up.classList.add('press')
+            up.click();
+              break;
+        
+        case 'ArrowLeft':
+            left.classList.add('press')
+            left.click();
+            break;
+
+        case 'ArrowDown':
+            down.classList.add('press')
+            down.click();
+            break;
+
+        case 'ArrowRight':
+            right.classList.add('press')
+            right.click();
+            break;
+    }
+}
+
+function btnUP(){
+    up.classList.remove('press')
+    left.classList.remove('press')
+    down.classList.remove('press')
+    right.classList.remove('press')
+
+}
