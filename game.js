@@ -32,7 +32,7 @@ function startGame(){
     game.font = (elementsSize*0.8) + 'px Roboto Mono';
     game.textAlign = 'end'
 
-    const map = maps[2]
+    const map = maps[0]
     const mapRow = map.trim().split('\n');
     console.log(mapRow);
     const mapRowCol = mapRow.map (row => row.trim().split(''));
@@ -40,10 +40,22 @@ function startGame(){
     let x = elementsSize;
     let y = elementsSize * 0.98;
 
-    for (let i = 1; i <= 10; i++){
+   mapRowCol.forEach((row, rowI) =>{
+    row.forEach((col, colI) => {
+        const emoji = emojis[col];
+        const posX = x * (colI + 1)
+        const posY = y * (rowI + 1);
+        game.fillText(emoji, posX, posY)
+    })
+   })
+  
+/*     
+Esta fue la primera forma cómo se calculo el mapa
+for (let i = 1; i <= 10; i++){
         for(let j = 1; j <= 10; j++){
             game.fillText(emojis[mapRowCol[i-1][j-1]] , x *j , y*i  )  
         }
         
-    }
-}
+    }*/
+
+} 
