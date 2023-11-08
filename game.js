@@ -99,29 +99,40 @@ function movePlayer(){
 
 }
 
-function moveUp(){
+function moveUp() {
     console.log('Up');
-    playerPosition.y -= y
-    startGame();
+    if (playerPosition.y - y >= 0) {
+        playerPosition.y -= y;
+        startGame();
+    }
 }
 
-function moveLeft(){
+function moveLeft() {
     console.log('Left');
-    playerPosition.x -= x
-    startGame();
+    if (playerPosition.x - x >= 1) {
+        playerPosition.x -= x;
+        startGame();
+    }
 }
 
-function moveDown(){
+
+function moveDown() {
     console.log('Down');
-    playerPosition.y += y
-    startGame();
+    if (playerPosition.y + y < canvasSize) {
+        playerPosition.y += y;
+        startGame();
+    }
 }
 
-function moveRight(){
-    console.log('Rigth');
-    playerPosition.x += x
-    startGame();
+
+function moveRight() {
+    console.log('Right');
+    if (playerPosition.x + x < (canvasSize+1)) {
+        playerPosition.x += x;
+        startGame();
+    }
 }
+
 
 function moveKeyBoard(key){
     
