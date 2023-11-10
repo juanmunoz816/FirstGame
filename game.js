@@ -26,6 +26,11 @@ const playerPosition = {
     y: undefined,
 }
 
+const alienPosition = {
+    x: undefined,
+    y: undefined,
+}
+
 window.addEventListener('load' , setCanvasSize);
 window.addEventListener('resize' ,setCanvasSize);
 
@@ -56,7 +61,7 @@ function startGame(){
 
     const map = maps[0]
     const mapRow = map.trim().split('\n');
-    console.log(mapRow);
+    /* console.log(mapRow); */
     const mapRowCol = mapRow.map (row => row.trim().split(''));
 
     game.clearRect(0,0,canvasSize,canvasSize);
@@ -75,6 +80,9 @@ function startGame(){
                 playerPosition.x = posX;
                 playerPosition.y = posY;
             }
+        }else if(col == 'I'){
+            alienPosition.x = posX;
+            alienPosition.y = posY;
         }
 
         game.fillText(emoji, posX, posY)
@@ -95,16 +103,26 @@ for (let i = 1; i <= 10; i++){
 } 
 
 function movePlayer(){
-    game.fillText(emojis['PLAYER'], playerPosition.x, playerPosition.y)
+    const alienColisionX = playerPosition.x.toFixed(2) == alienPosition.x.toFixed(2);
+    const alienColisionY = playerPosition.y.toFixed(2) == alienPosition.y.toFixed(2);
+    const alienColision = alienColisionX && alienColisionY
+
+    if(alienColision){
+        console.log('¡Subiste de nivel!');
+    }
+
+    game.fillText(emojis['PLAYER'], playerPosition.x, playerPosition.y);
+
 
 }
 
 function moveUp() {
     console.log('Up');
-    if (playerPosition.y - y >= 0) {
+    if (playerPosition.y.toFixed(2) - y.toFixed(2) >= y.toFixed(2)) {
         playerPosition.y -= y;
-        startGame();
+        startGame();    
     }
+
 }
 
 function moveLeft() {
@@ -122,6 +140,7 @@ function moveDown() {
         playerPosition.y += y;
         startGame();
     }
+    
 }
 
 
