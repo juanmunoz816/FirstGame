@@ -20,6 +20,7 @@ let canvasSize;
 let elementsSize;
 let x;
 let y;
+let level =  0
 
 const playerPosition = {
     x: undefined,
@@ -63,7 +64,13 @@ function startGame(){
     game.font = (elementsSize*0.8) + 'px Roboto Mono';
     game.textAlign = 'end'
 
-    const map = maps[0]
+    const map = maps[level]
+
+    if(!map){
+        gameWin();
+        return
+    }
+
     const mapRow = map.trim().split('\n');
     /* console.log(mapRow); */
     const mapRowCol = mapRow.map (row => row.trim().split(''));
@@ -118,7 +125,8 @@ function movePlayer(){
     const alienColision = alienColisionX && alienColisionY
 
     if(alienColision){
-        console.log('¡Subiste de nivel!');
+        
+        levelWin();
     }
 
     const moonCollision = moonsPositions.find(moon => {
@@ -133,6 +141,16 @@ function movePlayer(){
 
     game.fillText(emojis['PLAYER'], playerPosition.x, playerPosition.y);
 
+}
+
+function levelWin(){
+    console.log('¡Subiste de nivel!');
+    level++;
+    startGame();
+};
+
+function gameWin(){
+    console.log('Terminaste el juego');
 }
 
 function moveUp() {
