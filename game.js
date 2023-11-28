@@ -20,7 +20,8 @@ let canvasSize;
 let elementsSize;
 let x;
 let y;
-let level =  0
+let level =  0;
+let lives = 3;
 
 const playerPosition = {
     x: undefined,
@@ -136,7 +137,7 @@ function movePlayer(){
     });
 
     if (moonCollision){
-        console.log('Chocaste con una luna 🌑')
+        levelFail();
     }
 
     game.fillText(emojis['PLAYER'], playerPosition.x, playerPosition.y);
@@ -148,6 +149,24 @@ function levelWin(){
     level++;
     startGame();
 };
+
+function levelFail(){
+    console.log('Chocaste con una luna 🌑')
+
+    lives--;
+    
+    if(lives <= 0){
+        level = 0;
+        lives = 3;
+    }
+    
+    playerPosition.x=undefined;
+    playerPosition.y=undefined;
+    startGame()
+
+
+
+}
 
 function gameWin(){
     console.log('Terminaste el juego');
