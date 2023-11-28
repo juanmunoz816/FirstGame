@@ -31,6 +31,10 @@ const alienPosition = {
     y: undefined,
 }
 
+let moonsPositions = [];
+
+
+
 window.addEventListener('load' , setCanvasSize);
 window.addEventListener('resize' ,setCanvasSize);
 
@@ -64,6 +68,7 @@ function startGame(){
     /* console.log(mapRow); */
     const mapRowCol = mapRow.map (row => row.trim().split(''));
 
+    moonsPositions = [];
     game.clearRect(0,0,canvasSize,canvasSize);
 
     x = elementsSize;
@@ -83,6 +88,11 @@ function startGame(){
         }else if(col == 'I'){
             alienPosition.x = posX;
             alienPosition.y = posY;
+        }else if(col == 'X'){
+            moonsPositions.push({
+                x: posX,
+                y: posY,
+            })
         }
 
         game.fillText(emoji, posX, posY)
@@ -111,8 +121,17 @@ function movePlayer(){
         console.log('¡Subiste de nivel!');
     }
 
-    game.fillText(emojis['PLAYER'], playerPosition.x, playerPosition.y);
+    const moonCollision = moonsPositions.find(moon => {
+        const moonCollisionX = moon.x.toFixed(2) == playerPosition.x.toFixed(2);
+        const moonCollisionY = moon.y.toFixed(2) == playerPosition.y.toFixed(2);
+        return moonCollisionX && moonCollisionY;
+    });
 
+    if (moonCollision){
+        console.log('Chocaste con una luna 🌑')
+    }
+
+    game.fillText(emojis['PLAYER'], playerPosition.x, playerPosition.y);
 
 }
 
