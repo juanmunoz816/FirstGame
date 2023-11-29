@@ -7,6 +7,7 @@ const up = document.querySelector('#up');
 const left = document.querySelector('#left');
 const down = document.querySelector('#down');
 const right = document.querySelector('#right');
+const textLives = document.querySelector('#Lives')
 
 up.addEventListener('click', moveUp);
 left.addEventListener('click', moveLeft);
@@ -75,6 +76,8 @@ function startGame(){
     const mapRow = map.trim().split('\n');
     /* console.log(mapRow); */
     const mapRowCol = mapRow.map (row => row.trim().split(''));
+
+    showLives();
 
     moonsPositions = [];
     game.clearRect(0,0,canvasSize,canvasSize);
@@ -152,7 +155,6 @@ function levelWin(){
 
 function levelFail(){
     console.log('Chocaste con una luna 🌑')
-
     lives--;
     
     if(lives <= 0){
@@ -170,6 +172,16 @@ function levelFail(){
 
 function gameWin(){
     console.log('Terminaste el juego');
+}
+
+function showLives(){
+
+    const livesArray = Array(lives).fill(emojis['lives'])
+
+    textLives.innerHTML="";
+
+    livesArray.forEach(heart => textLives.append(heart))
+   
 }
 
 function moveUp() {
