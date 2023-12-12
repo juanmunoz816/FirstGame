@@ -7,7 +7,8 @@ const up = document.querySelector('#up');
 const left = document.querySelector('#left');
 const down = document.querySelector('#down');
 const right = document.querySelector('#right');
-const textLives = document.querySelector('#Lives')
+const textLives = document.querySelector('#Lives');
+const textTime = document.querySelector('#Time');
 
 up.addEventListener('click', moveUp);
 left.addEventListener('click', moveLeft);
@@ -124,8 +125,8 @@ for (let i = 1; i <= 10; i++){
 } 
 
 function movePlayer(){
-    const alienColisionX = playerPosition.x.toFixed(2) == alienPosition.x.toFixed(2);
-    const alienColisionY = playerPosition.y.toFixed(2) == alienPosition.y.toFixed(2);
+    const alienColisionX = playerPosition.x.toFixed(1) == alienPosition.x.toFixed(1);
+    const alienColisionY = playerPosition.y.toFixed(1) == alienPosition.y.toFixed(1);
     const alienColision = alienColisionX && alienColisionY
 
     if(alienColision){
@@ -183,6 +184,8 @@ function showLives(){
     livesArray.forEach(heart => textLives.append(heart))
    
 }
+
+function showTime(){}
 
 function moveUp() {
     console.log('Up');
