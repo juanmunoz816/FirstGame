@@ -9,6 +9,7 @@ const down = document.querySelector('#down');
 const right = document.querySelector('#right');
 const textLives = document.querySelector('#Lives');
 const textTime = document.querySelector('#Time');
+const textRecord = document.querySelector('#Record');
 
 up.addEventListener('click', moveUp);
 left.addEventListener('click', moveLeft);
@@ -81,6 +82,7 @@ function startGame(){
     if(!timeStart){
         timeStart = Date.now();
         timeInterval = setInterval(showTime, 100);
+        showRecord();
     }
 
     const mapRow = map.trim().split('\n');
@@ -184,6 +186,20 @@ function levelFail(){
 function gameWin(){
     console.log('Terminaste el juego');
     clearInterval(timeInterval);
+    const recordTime = localStorage.getItem('record_time');
+    const playerTime = Date.now() - timeStart;
+
+    if (recordTime){
+        if(recordTime >= playerTime){
+            localStorage.setItem('record_time', playerTime)
+        }else{
+            console.log('Lo siento no superaste el record')
+        }
+    } else {
+        localStorage.setItem('record_time', playerTime);
+    }
+    console.log(recordTime);
+
 }
 
 function showLives(){
@@ -198,6 +214,14 @@ function showLives(){
 
 function showTime(){
     textTime.innerHTML = Date.now() - timeStart;
+}
+
+function showRecord(){
+    if (localStorage.getItem('record_time') == null){
+        textRecord.innerHTML = "0"
+    }else {
+        textRecord.innerHTML = localStorage.getItem('record_time')
+    }
 }
 
 function moveUp() {
